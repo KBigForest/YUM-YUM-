@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<!--
+	Alpha by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>YUM+YUM-</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="static/assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Main -->
+				<section id="main" class="container">
+					<header>
+						<h2>LIGHT</h2>
+						<p>지역을 선택하면 그 지역의 맛집을 알려드리겠습니다.</p>
+					</header>
+					<div class="box">
+						<span class="image featured"><img src="static/images/lightboteye.png" alt="" /></span>
+						<h1>{{date.year}}년 {{date.month}}월 {{date.day}}일 {{date.hour}}시 기준 {{location}}의 맛집입니다.</h1>
+					</div>
+
+					<div>
+						{% for idx in range(5) %}
+						<div style="float: left">
+							<img src={{df['이미지url'][idx][1:-1]}} width="300" height="200" alt="예시 이미지">
+						</div>
+						<div>
+							<h3>{{df['가게명'][idx]}}</h3>
+							<h3 style="color: red;">yum-score: {{df['예측별점평균'][idx]|round(2)}}</h3>
+							<a href="{{df['카카오 url'][idx]}}">카카오 지도에서 확인하기</a>
+						</div>
+						
+						<h5>영업시간:{{df['영업 시간'][idx]}}</h><br>
+						<h5>업종:{{df['업종'][idx]}}</h><br>
+						<h6>연관 가게:{{cos_sim(df['가게명'][idx],5).values}}</h6>
+						<br>
+						<hr>
+						{% endfor %}
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<ul class="copyright">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="static/assets/js/jquery.min.js"></script>
+			<script src="static/assets/js/jquery.dropotron.min.js"></script>
+			<script src="static/assets/js/jquery.scrollex.min.js"></script>
+			<script src="static/assets/js/browser.min.js"></script>
+			<script src="static/assets/js/breakpoints.min.js"></script>
+			<script src="static/assets/js/util.js"></script>
+			<script src="static/assets/js/main.js"></script>
+
+	</body>
+</html>
